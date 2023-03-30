@@ -10,4 +10,9 @@ package studentlibrary;
  */
 public class Book {
     
+    String ID;
+    String Author_first_name;
+    String Author_second_name;
+    
+    
 }
