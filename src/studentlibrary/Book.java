@@ -6,11 +6,11 @@ package studentlibrary;
 
 /**
  *
- * @author caio_
+ * @author Felipe
  */
 public class Book {
 
-   private String id, fName, lName, title, genre;
+    private String id, fName, lName, title, genre;
 
     public Book(String id, String fName, String lName, String title, String genre) {
         this.id = id;
@@ -18,12 +18,11 @@ public class Book {
         this.lName = lName;
         this.title = title;
         this.genre = genre;
-        
+
     }
 
     public Book() {
     }
-
 
     public String getId() {
         return id;
@@ -69,7 +68,4 @@ public class Book {
     public String toString() {
         return "Book{" + "id=" + id + ", fName=" + fName + ", lName=" + lName + ", title=" + title + ", genre=" + genre + ", waitingList=" + '}';
     }
-    
-    
-    
 }
