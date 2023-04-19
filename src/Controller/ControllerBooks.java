@@ -87,4 +87,17 @@ public class ControllerBooks {
         // if doenst find a book will return null
         return null;
     }
+    
+     public Books searchByAuthor(String myKB, List<Books> books) {
+
+        for (Books book : books) {
+            //condition if user insert a title of book, they will return all the infomations about it
+            if (book.getfName().equalsIgnoreCase(myKB)) {
+                System.out.println(" ");
+                return book;
+            }
+        }
+        // if doenst find a book will return null
+        return null;
+    }
 }
