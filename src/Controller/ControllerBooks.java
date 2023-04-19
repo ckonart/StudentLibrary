@@ -25,8 +25,7 @@ public class ControllerBooks {
       it receives as a parameter a String filePath that mains path of the file to be read a 
       and throws a FileNotFoundException is a type exception if the file is not found.
      */
-    public List<Books> readLivros(String filePath) throws FileNotFoundException {
-        
+    public List<Books> readLivros(String filePath) throws FileNotFoundException {  
         // read a new file
         try ( Scanner myKB = new Scanner(new File(filePath))){
             
@@ -77,12 +76,15 @@ public class ControllerBooks {
       it receive as parameter String title and List of books
      */
     public Books searchByTitle(String title, List<Books> books) {
+
         for (Books book : books) {
+            //condition if user insert a title of book, they will return all the infomations about it
             if (book.getTitle().equalsIgnoreCase(title)) {
                 System.out.println(" ");
                 return book;
             }
         }
+        // if doenst find a book will return null
         return null;
     }
 }
