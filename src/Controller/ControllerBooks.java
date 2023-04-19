@@ -1,7 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
+
 package Controller;
 
 import java.io.File;
@@ -17,57 +15,53 @@ import studentlibrary.Books;
  * @author felipe
  */
 
-
 public class ControllerBooks {
 
     static List<Books> book = new ArrayList<>();
 
     /*
-        ReadBooks Method:
-        The method readBooks is used to read a file.csv and store in a list of objects of type Books.
-        it receives as a parameter a String filePath that mains path of the file to be read a 
-        and throws a FileNotFoundException is a type exception if the file is not found.
-    */
-    public List<Books> readBooks(String filePath) throws FileNotFoundException {
-    
-    // Try read a file using Scanner
-        try (Scanner myKB = new Scanner(new File(filePath))) {
-    // Condition if, has next line for myKB read 
-            if (myKB.hasNextLine()){
+      ReadBooks Method:
+      The method readBooks is used to read a file.csv and store in a list of objects of type Books.
+      it receives as a parameter a String filePath that mains path of the file to be read a 
+      and throws a FileNotFoundException is a type exception if the file is not found.
+     */
+    public List<Books> readLivros(String filePath) throws FileNotFoundException {
+        
+        // read a new file
+        try ( Scanner myKB = new Scanner(new File(filePath))){
+            
+            // condition to skip the first line 
+            if (myKB.hasNextLine()) {
                 myKB.nextLine();
             }
-
-    //   The loop while reads each line from the filePath 
-    //   It is used to split the line into individual values, using a comma as a separator.      
-    
-          while (myKB.hasNextLine()) {
+            
+            // loop read each line from filePath
+            // Read a individual value, using comma as separator
+            while (myKB.hasNextLine()) {
                 String linha = myKB.nextLine();
                 String[] valores = linha.split(",");
                 Books newBook = new Books(valores[0], valores[1], valores[2], valores[3], valores[4]);
                 book.add(newBook);
-               } 
+            }
             
-    
-    //  If there is an exception while reading the file, the message displays for user.
-        } catch (Exception e) {
-            System.out.println("Error to read a file");
+        // exception if happens a error to read filePath
+        } catch (Exception e){
+            System.out.println("error to read a file");
         }
         return book;
-
     }
-    
+
     /*
-     ListAll Method:
-    The ListAll method is used to sort the list of books by title in ascending order. 
-    it receive List as parameter thats contains informations that need to be display
-    
-    */
+      listAll Method:
+      The listAll method is used list informations about book sorted by title . 
+      it receive List as parameter thats contains informations that need to be display  
+     */
     public void listAll(List<Books> books) {
-        
-    //  sort a list ofbook by title
-        books.sort(Comparator.comparing(Books::getTitle));
-        
-    //  loop to read all the books
+        //  sort a list of book by title
+        books.sort(Comparator.comparing(Books::getTitle)); // ordena os livros pelo título
+        System.out.println("All books by title: \n");
+
+        //  loop read all the information of books and display for user
         for (Books book : books) {
             System.out.println("TITLE: " + book.getTitle());
             System.out.println("NAME: " + book.getfName() + " " + book.getlName());
@@ -77,4 +71,18 @@ public class ControllerBooks {
         System.out.println("\n");
     }
 
+    /*  
+      searchByTitle:
+      the method searchByTitle is used to search a book by title and display for user informations about it
+      it receive as parameter String title and List of books
+     */
+    public Books searchByTitle(String title, List<Books> books) {
+        for (Books book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                System.out.println(" ");
+                return book;
+            }
+        }
+        return null;
+    }
 }
