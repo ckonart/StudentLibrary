@@ -7,57 +7,56 @@ package studentlibrary;
 
 /**
  *
- * @author felipe
+ * @author caio_
  */
 public class Students {
     
-   public String ID;
-    public String Student_first_name;
-    public String Student_last_name;
-    public String Adreess;
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String address;
 
-    // Constructor
-    public Students(String ID, String Student_first_name, String Student_last_name, String Adreess) {
-        this.ID = ID;
-        this.Student_first_name = Student_first_name;
-        this.Student_last_name = Student_last_name;
-        this.Adreess = Adreess;
+    public Students(String id, String firstName, String lastName, String address) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
     }
 
-    // Getters and setters
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getStudent_first_name() {
-        return Student_first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setStudent_first_name(String Student_first_name) {
-        this.Student_first_name = Student_first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getStudent_last_name() {
-        return Student_last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setStudent_last_name(String Student_last_name) {
-        this.Student_last_name = Student_last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getAdreess() {
-        return Adreess;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdreess(String Adreess) {
-        this.Adreess = Adreess;
+    public void setAddress(String address) {
+        this.address = address;
     }
-    
 
-    
+    @Override
+    public String toString() {
+        return "Students{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + '}';
+    }
 }
-
