@@ -22,7 +22,7 @@ public class Borrowing {
     private LocalDate dueDate;
     private LocalDate endDate;
     private boolean available;
-    //private List<Livros> borrowedBooks;
+    
 
     
     
@@ -32,7 +32,6 @@ public class Borrowing {
         this.startDate = startDate;
         this.endDate = endDate;
         this.available = true;
-        //this.borrowedBooks = new ArrayList<>();
     }
 
     public Borrowing() {
