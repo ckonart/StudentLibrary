@@ -58,6 +58,21 @@ public class ControllerStudents {
         System.out.println("\n");
         
 }
+    /*  
+      searchByAuthor:
+      the method searchByAuthor is used to search a book by author firstname and display for user informations about it
+      it receive String Author and List of books as parameter 
+     */
+    
+    public Students searchByName(String name, List<Students> students) {
+        
+        for (Students student : students) {
+            if (student.getFirstName().equalsIgnoreCase(name) || student.getLastName().equalsIgnoreCase(name)) {
+                System.out.println(" ");
+                return student;
+            }
+        }
+        return null;
+    
+    }
 }
-    
-    
