@@ -13,20 +13,20 @@ import java.util.List;
 import studentlibrary.Students;
 
 public class ControllerStudents {
-    
+
     static List<Students> students = new ArrayList<>();
-    
+
     public List<Students> readStudents(String fileName) throws IOException {
-        
+
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
         boolean firstLine = true;
-        
+
         while ((line = br.readLine()) != null) {
             if (firstLine) { // skip the first line
-            firstLine = false;
-            continue;
-        }
+                firstLine = false;
+                continue;
+            }
             String[] data = line.split(",");
             String id = data[0];
             String firstName = data[1];
@@ -38,7 +38,7 @@ public class ControllerStudents {
         br.close();
         return students;
     }
-    
+
     /*
       listAllbyNme Method:
       The listAll method is used list information about Students sorted by firstname and lastname . 
@@ -47,25 +47,24 @@ public class ControllerStudents {
     public void listAllByName(List<Students> students) {
         //  sort a list of book by firstname e second name
         students.sort(Comparator.comparing(Students::getFirstName).thenComparing(Students::getLastName));
-               
+
         //  loop read all the information of student and display for user
-        for (Students student: students) {
+        for (Students student : students) {
             System.out.println("NAME: " + student.getFirstName() + " " + student.getLastName());
             System.out.println("ADDRESS: " + student.getAddress());
             System.out.println("ID: " + student.getId());
             System.out.println(" ");
         }
         System.out.println("\n");
-        
-}
+    }
+
     /*  
-      searchByAuthor:
-      the method searchByAuthor is used to search a book by author firstname and display for user informations about it
-      it receive String Author and List of books as parameter 
+      searchByName:
+      the method searchByName is used to search a srudents by name and display for user informations about it
+      it receive String name and List of Students as parameter 
      */
-    
     public Students searchByName(String name, List<Students> students) {
-        
+        //loop read file and try to find in first name or last name the user request
         for (Students student : students) {
             if (student.getFirstName().equalsIgnoreCase(name) || student.getLastName().equalsIgnoreCase(name)) {
                 System.out.println(" ");
@@ -73,6 +72,23 @@ public class ControllerStudents {
             }
         }
         return null;
-    
+
+    }
+
+    /*  
+      searchByID:
+      the method searchByID is used to search a srudents by ID and display for user informations about it
+      it receive String id and List of Students as parameter 
+     */
+    public Students searchByID(String id, List<Students> students) {
+        //loop read file and try to find id that the user request
+        for (Students student : students) {
+            if (student.getId().equalsIgnoreCase(id)) {
+                System.out.println(" ");
+                return student;
+            }
+        }
+        return null;
+
     }
 }
