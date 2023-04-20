@@ -12,6 +12,12 @@ import java.util.Comparator;
 import java.util.List;
 import studentlibrary.Students;
 
+
+/**
+ *
+ * @author Caio Konart and Felipe Teixeira
+ */
+
 public class ControllerStudents {
 
     static List<Students> students = new ArrayList<>();

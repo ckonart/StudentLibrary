@@ -12,7 +12,7 @@ import studentlibrary.Books;
 
 /**
  *
- * @author felipe
+ * @author Caio Konart and Felipe Teixeira
  */
 
 public class ControllerBooks {
@@ -84,20 +84,26 @@ public class ControllerBooks {
                 return book;
             }
         }
-        // if doenst find a book will return null
+        // if doesnt find a book will return null
         return null;
     }
     
-     public Books searchByAuthor(String myKB, List<Books> books) {
+    
+    /*  
+      searchByAuthor:
+      the method searchByAuthor is used to search a book by author firstname and display for user informations about it
+      it receive String Author and List of books as parameter 
+     */
+    public Books searchByAuthor(String Author, List<Books> books) {
 
         for (Books book : books) {
-            //condition if user insert a title of book, they will return all the infomations about it
-            if (book.getfName().equalsIgnoreCase(myKB)) {
+            //condition if user insert an author firstname, they will return all the infomations about it
+            if (book.getfName().equalsIgnoreCase(Author)) {
                 System.out.println(" ");
                 return book;
             }
         }
-        // if doenst find a book will return null
+        // if doesnt find an author firstname will return null
         return null;
     }
 }

@@ -8,11 +8,11 @@ package studentlibrary;
  *
  * @author Felipe
  */
-public class Book {
+public class Books {
 
     private String id, fName, lName, title, genre;
 
-    public Book(String id, String fName, String lName, String title, String genre) {
+    public Books(String id, String fName, String lName, String title, String genre) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -21,7 +21,7 @@ public class Book {
 
     }
 
-    public Book() {
+    public Books() {
     }
 
     public String getId() {
