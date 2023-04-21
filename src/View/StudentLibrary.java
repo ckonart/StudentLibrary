@@ -30,8 +30,9 @@ public class StudentLibrary {
         ControllerBorrowing myEmp = new ControllerBorrowing();
 
         try {
-            List<Books> books = myC.readLivros("/Users/felipe/NetBeansProjects/StudentLibrary/MOCK_DATA.csv");
-            List<Students> std = myEst.readStudents("/Users/felipe/NetBeansProjects/StudentLibrary/STUDENTS.csv");
+            List<Books> books = myC.readLivros("src\\MOCK_DATA.csv");
+            List<Students> std = myEst.readStudents("src\\STUDENTS.csv");
+            //List<Borrowings> brw = myEmp
 
             Scanner scanner = new Scanner(System.in);
             int choice;
@@ -124,17 +125,20 @@ public class StudentLibrary {
 
                     case 7:
                         myEmp.borrowBook();
-                        System.out.println(ControllerBorrowing.listEmprestimos);
+                        System.out.println(ControllerBorrowing.listBorrowings);
                         break;
 
                     case 8:
-
+                        //myEmp.printBorrowList();
+                        
                         break;
 
                     case 9:
-
+                        myEmp.returnBook();
+                        System.out.println(ControllerBorrowing.listBorrowings);
+                        break;
                     case 10:
-
+                        break;
                     case 11:
                       myEmp.printWaitList();
                     break;

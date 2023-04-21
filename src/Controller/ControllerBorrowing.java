@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import static Controller.ControllerBooks.book;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Scanner;
 import Model.Books;
 import Model.Borrowing;
 import Model.Students;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -21,7 +24,7 @@ import java.util.Queue;
 
 public class ControllerBorrowing {
 
-    public static List<Borrowing> listEmprestimos = new ArrayList<>();
+    public static List<Borrowing> listBorrowings = new ArrayList<>();
     public Queue<Borrowing> waitingList = new LinkedList<>();
 
     public Borrowing borrowBook() {
@@ -46,7 +49,7 @@ public class ControllerBorrowing {
         
         Borrowing meuEmp = new Borrowing();
   
-        for (Borrowing emp : listEmprestimos) {
+        for (Borrowing emp : listBorrowings) {
         if (emp.getBook().equals(book) && emp.isAvailable() == false) {                
             
         // Add student to waiting list
@@ -60,18 +63,18 @@ public class ControllerBorrowing {
             }
         }
     
-    
     LocalDate date = LocalDate.now();
-    meuEmp.setStartDate(date.plusDays(7));
+    meuEmp.setStartDate(date.toString());
+    meuEmp.setDueDate(date.plusDays(7).toString());
     meuEmp.setBook(book);
     meuEmp.setStudent(student);
     meuEmp.setAvailable(false);
-    listEmprestimos.add(meuEmp);
+    listBorrowings.add(meuEmp);
            
-
         return meuEmp;
     }
         
+    
     public Borrowing returnBook() {
 
         ControllerBooks meuLivro = new ControllerBooks();
@@ -101,10 +104,9 @@ public class ControllerBorrowing {
             System.out.println("Book not found");
         }
 
-        for (Borrowing Borrowing : listEmprestimos) {
+        for (Borrowing Borrowing : listBorrowings) {
             if (Borrowing.getStudent().getId() == student.getId() && Borrowing.getBook().getTitle().equals(book) && Borrowing.isAvailable() == false) {
-                LocalDate endDate1 = LocalDate.now();
-                Borrowing.setEndDate(endDate1);
+                Borrowing.setEndDate(LocalDate.now().toString());
                 Borrowing.setAvailable(true);
                 myemp = Borrowing;
                 break;
@@ -113,9 +115,34 @@ public class ControllerBorrowing {
         return myemp;
     }
     
+        
+    /*public List<Borrowing> readBorrowList(String filePath) throws FileNotFoundException {  
+        // read a new file
+        try ( Scanner myKB = new Scanner(new File(filePath))){
+            
+            // condition to skip the first line 
+            if (myKB.hasNextLine()) {
+                myKB.nextLine();
+            }
+            
+            // loop read each line from filePath
+            // Read a individual value, using comma as separator
+            while (myKB.hasNextLine()) {
+                String line = myKB.nextLine();
+                String[] values = line.split(",");
+                Borrowing newBorrow = new Borrowing(values[0], values[1], values[2], values[3]);
+                listBorrowings.add(newBorrow);
+            }
+            
+        // exception if happens a error to read filePath
+        } catch (Exception e){
+            System.out.println("error to read a file");
+        }
+        return book;
+    }*/
     
-public void printWaitList() {
-    System.out.println("Waiting list:");
+    public void printWaitList() {
+        System.out.println("Waiting list:");
         
             System.out.println(waitingList);
 }

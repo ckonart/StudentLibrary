@@ -14,15 +14,15 @@ public class Borrowing {
     
     private Books book;
     private Students student;
-    private LocalDate startDate;
-    private LocalDate dueDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String dueDate;
+    private String endDate;
     private boolean available;
     
 
     
     
-    public Borrowing(Books book, Students student, LocalDate startDate, LocalDate endDate) {
+    public Borrowing(Books book, Students student, String startDate, String endDate) {
         this.book = book;
         this.student = student;
         this.startDate = startDate;
@@ -32,8 +32,6 @@ public class Borrowing {
 
     public Borrowing() {
     }
-    
-    
 
     public Books getBook() {
         return book;
@@ -51,32 +49,30 @@ public class Borrowing {
         this.student = student;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = LocalDate.now();
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
-    
-    
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-    
+
     public boolean isAvailable() {
         return available;
     }
@@ -87,6 +83,8 @@ public class Borrowing {
 
     @Override
     public String toString() {
-        return "Emprestimos:\n" + "book=" + book + "\n student=" + student + "\n startDate=" + startDate + "\n dueDate=" + dueDate + "/n endDate=" + endDate + "/n available=" + available + '}';
+        return "Borrowing{" + "book=" + book + ", student=" + student + ", startDate=" + startDate + ", dueDate=" + dueDate + ", endDate=" + endDate + ", available=" + available + '}';
     }
+    
+    
 }
