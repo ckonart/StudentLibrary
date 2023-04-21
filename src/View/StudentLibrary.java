@@ -1,14 +1,16 @@
 
+
 package View;
 
 import Controller.ControllerBooks;
+import Controller.ControllerBorrowing;
 import Controller.ControllerStudents;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-import studentlibrary.Books;
-import studentlibrary.Students;
+import Model.Books;
+import Model.Students;
 
 
 /**
@@ -25,14 +27,15 @@ public class StudentLibrary {
 
         ControllerBooks myC = new ControllerBooks();
         ControllerStudents myEst = new ControllerStudents();
-        // ControllerEmprestimos myEmp = new ControllerEmprestimos();
+        ControllerBorrowing myEmp = new ControllerBorrowing();
 
         try {
-            List<Books> books = myC.readLivros("/Users/felipe/DATA.csv");
-            List<Students> std = myEst.readStudents("/Users/felipe/STUDENTS.csv");
+            List<Books> books = myC.readLivros("/Users/felipe/NetBeansProjects/StudentLibrary/MOCK_DATA.csv");
+            List<Students> std = myEst.readStudents("/Users/felipe/NetBeansProjects/StudentLibrary/STUDENTS.csv");
 
             Scanner scanner = new Scanner(System.in);
             int choice;
+
             do {
                 System.out.println("--------WELCOME TO OUR LIBRARY SYSTEM!!!--------- \n");
                 System.out.println("1. List all books by title");
@@ -84,7 +87,6 @@ public class StudentLibrary {
                         } else {
                             System.out.println("Author not found");
                         }
-
                         break;
 
                     case 4:
@@ -93,8 +95,8 @@ public class StudentLibrary {
                         break;
 
                     case 5:
-                        System.out.print("Enter the name of the student: ");  
-                        scanner.nextLine(); 
+                        System.out.print("Enter the name of the student: ");
+                        scanner.nextLine();
                         String studentName = scanner.nextLine();
                         Students student = myEst.searchByName(studentName, std);
                         if (student != null) {
@@ -105,9 +107,10 @@ public class StudentLibrary {
                             System.out.println("Student not found");
                         }
                         break;
+
                     case 6:
-                        System.out.print("Enter a student ID: ");   
-                        scanner.nextLine(); 
+                        System.out.print("Enter a student ID: ");
+                        scanner.nextLine();
                         String studentID = scanner.nextLine();
                         Students student1 = myEst.searchByID(studentID, std);
                         if (student1 != null) {
@@ -118,16 +121,24 @@ public class StudentLibrary {
                             System.out.println("Student not found");
                         }
                         break;
+
                     case 7:
+                        myEmp.borrowBook();
+                        System.out.println(ControllerBorrowing.listEmprestimos);
+                        break;
 
                     case 8:
+
+                        break;
 
                     case 9:
 
                     case 10:
 
                     case 11:
-
+                      myEmp.printWaitList();
+                    break;
+                      
                     case 12:
                 }
 

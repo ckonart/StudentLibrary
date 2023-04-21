@@ -2,17 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package studentlibrary;
+package Model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  *
- * @author felipe e 
+ * @author felipe e Caio Konart
  */
 public class Borrowing {
     
@@ -59,7 +55,7 @@ public class Borrowing {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = LocalDate.now();
     }
 
@@ -68,7 +64,7 @@ public class Borrowing {
     }
 
     public void setDueDate(LocalDate dueDate) {
-        this.dueDate = startDate.plusDays(7);
+        this.dueDate = dueDate;
     }
     
     
@@ -93,9 +89,4 @@ public class Borrowing {
     public String toString() {
         return "Emprestimos:\n" + "book=" + book + "\n student=" + student + "\n startDate=" + startDate + "\n dueDate=" + dueDate + "/n endDate=" + endDate + "/n available=" + available + '}';
     }
-    
-    
-    
-    
-    
 }

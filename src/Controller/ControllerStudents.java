@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import studentlibrary.Students;
+import Model.Students;
 
 
 /**
@@ -89,7 +89,7 @@ public class ControllerStudents {
     public Students searchByID(String id, List<Students> students) {
         //loop read file and try to find id that the user request
         for (Students student : students) {
-            if (student.getId().equalsIgnoreCase(id)) {
+            if (student.getId()==student.getId()) {
                 System.out.println(" ");
                 return student;
             }

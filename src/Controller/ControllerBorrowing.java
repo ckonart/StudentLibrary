@@ -5,13 +5,14 @@
 package Controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import studentlibrary.Books;
-import studentlibrary.Borrowing;
-import studentlibrary.Students;
+import Model.Books;
+import Model.Borrowing;
+import Model.Students;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -21,50 +22,56 @@ import studentlibrary.Students;
 public class ControllerBorrowing {
 
     public static List<Borrowing> listEmprestimos = new ArrayList<>();
+    public Queue<Borrowing> waitingList = new LinkedList<>();
 
     public Borrowing borrowBook() {
-
+        
         ControllerBooks mybook = new ControllerBooks();
         ControllerStudents myStd = new ControllerStudents();
-
+        
         System.out.println("Enter the name of the book");
         Scanner myKB = new Scanner(System.in);
         String title = myKB.nextLine();
         Books book = mybook.searchByTitle(title, ControllerBooks.book);
-        if (book != null) {
-
-            System.out.println("Book found: ");
-            System.out.println(book.getTitle() + " \t\t| " + book.getfName() + " \t\t| " + book.getlName() + " \t\t| " + book.getGenre());
-            System.out.println("\n");
-
-        } else {
-            System.out.println("Book not found");
-        }
 
         System.out.print("Enter the name of the student: ");
-        myKB.nextLine();
         String studentName = myKB.nextLine();
         Students student = myStd.searchByName(studentName, ControllerStudents.students);
-        if (student != null) {
-            System.out.println("Student found: ");
-            System.out.println(student.getFirstName() + " \t|\t" + student.getLastName() + " \t|\t" + student.getAddress() + " \t|\t" + student.getId());
-            System.out.println("\n");
-        } else {
-            System.out.println("Student not found");
+
+        // Check if book and student exist
+        if (book == null || student == null) {
+            System.out.println("data not found");
+            return null;
         }
-
+        
         Borrowing meuEmp = new Borrowing();
-
-        LocalDateTime date = LocalDateTime.now();
-        meuEmp.setAvailable(false);
-        meuEmp.setStartDate(date);
+  
+        for (Borrowing emp : listEmprestimos) {
+        if (emp.getBook().equals(book) && emp.isAvailable() == false) {                
+            
+        // Add student to waiting list
+        meuEmp.setStartDate(null);
         meuEmp.setBook(book);
         meuEmp.setStudent(student);
-        listEmprestimos.add(meuEmp);
+        meuEmp.setAvailable(false);
+        waitingList.add(meuEmp);
+        System.out.println("The book is not available. You have been added to the waiting list.");
+          return null;
+            }
+        }
+    
+    
+    LocalDate date = LocalDate.now();
+    meuEmp.setStartDate(date.plusDays(7));
+    meuEmp.setBook(book);
+    meuEmp.setStudent(student);
+    meuEmp.setAvailable(false);
+    listEmprestimos.add(meuEmp);
+           
 
         return meuEmp;
     }
-
+        
     public Borrowing returnBook() {
 
         ControllerBooks meuLivro = new ControllerBooks();
@@ -105,5 +112,11 @@ public class ControllerBorrowing {
         }
         return myemp;
     }
-
+    
+    
+public void printWaitList() {
+    System.out.println("Waiting list:");
+        
+            System.out.println(waitingList);
+}
 }
