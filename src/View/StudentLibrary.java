@@ -51,7 +51,7 @@ public class StudentLibrary {
                 System.out.println("10. Add a student to the queue");
                 System.out.println("11. Check next student in queue for a book");
                 System.out.println("12. Quit \n");
-                System.out.println("Please select an option: \n");
+                System.out.println("Please select an option: ");
                 choice = scanner.nextInt();
 
                 switch (choice) {
@@ -140,7 +140,7 @@ public class StudentLibrary {
                     case 10:
                         break;
                     case 11:
-                      myEmp.printWaitList();
+                      //myEmp.printWaitList();
                     break;
                       
                     case 12:

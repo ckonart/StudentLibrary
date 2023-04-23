@@ -22,7 +22,7 @@ public class Borrowing {
 
     
     
-    public Borrowing(Books book, Students student, String startDate, String endDate) {
+    public Borrowing() {
         this.book = book;
         this.student = student;
         this.startDate = startDate;
@@ -30,8 +30,8 @@ public class Borrowing {
         this.available = true;
     }
 
-    public Borrowing() {
-    }
+    //public Borrowing() {
+    //}
 
     public Books getBook() {
         return book;
@@ -83,7 +83,7 @@ public class Borrowing {
 
     @Override
     public String toString() {
-        return "Borrowing{" + "book=" + book + ", student=" + student + ", startDate=" + startDate + ", dueDate=" + dueDate + ", endDate=" + endDate + ", available=" + available + '}';
+        return "- " + book + "- " + student + "- StartDate = " + startDate + ", dueDate = " + dueDate + ", endDate = " + endDate + ", available=" + available;
     }
     
     

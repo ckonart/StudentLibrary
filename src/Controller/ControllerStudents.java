@@ -21,7 +21,13 @@ import Model.Students;
 public class ControllerStudents {
 
     static List<Students> students = new ArrayList<>();
-
+    
+    /*
+      ReadStudents Method:
+      The method readStudents is used to read a file.csv and store in a list of objects of type Students.
+      it receives as a parameter a String filePath that mains path of the file to be read a 
+      and throws a FileNotFoundException is a type exception if the file is not found.
+     */
     public List<Students> readStudents(String fileName) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -33,15 +39,15 @@ public class ControllerStudents {
                 firstLine = false;
                 continue;
             }
-            String[] data = line.split(",");
+            String[] data = line.split(",");  //splits our data using the comma to later add each value in your respective value
             String id = data[0];
             String firstName = data[1];
             String lastName = data[2];
             String address = data[3];
-            Students std = new Students(id, firstName, lastName, address);
+            Students std = new Students(id, firstName, lastName, address); //instanciate new object of a Student with the values that we predefined
             students.add(std);
         }
-        br.close();
+        br.close(); //close the reader
         return students;
     }
 
