@@ -125,11 +125,11 @@ public class StudentLibrary {
 
                     case 7:
                         myEmp.borrowBook();
-                        System.out.println(ControllerBorrowing.listBorrowings);
+                        System.out.println("Book borrowed with success!");
                         break;
 
                     case 8:
-                        //myEmp.printBorrowList();
+                        System.out.println(ControllerBorrowing.listBorrowings);
                         
                         break;
 
