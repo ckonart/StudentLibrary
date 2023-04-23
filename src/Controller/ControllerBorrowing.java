@@ -76,7 +76,7 @@ public class ControllerBorrowing {
         dataLines.add(loanData);
 
         try {
-            FileWriter writer = new FileWriter("src\\BORROWINGS.csv"); //Using the File Writer, here we defines the path where we want to save our data
+            FileWriter writer = new FileWriter("BORROWINGS.csv"); //Using the File Writer, here we defines the path where we want to save our data
 
             for (String[] data : dataLines) {
                 writer.write(String.join(",", data));   //method to join the elements of the array into a single String separated by commas. It'will create a single line of data in the CSV file.
