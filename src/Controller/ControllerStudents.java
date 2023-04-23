@@ -21,7 +21,7 @@ import Model.Students;
 public class ControllerStudents {
 
     static List<Students> students = new ArrayList<>();
-    
+
     /*
       ReadStudents Method:
       The method readStudents is used to read a file.csv and store in a list of objects of type Students.
@@ -62,6 +62,7 @@ public class ControllerStudents {
 
         //  loop read all the information of student and display for user
         for (Students student : students) {
+            System.out.println("Student found: ");
             System.out.println("NAME: " + student.getFirstName() + " " + student.getLastName());
             System.out.println("ADDRESS: " + student.getAddress());
             System.out.println("ID: " + student.getId());
@@ -75,7 +76,7 @@ public class ControllerStudents {
       the method searchByName is used to search a srudents by name and display for user informations about it
       it receive String name and List of Students as parameter 
      */
-    public Students searchByName(String name, List<Students> students) {
+    public Students searchName(String name, List<Students> students) {
         //loop read file and try to find in first name or last name the user request
         for (Students student : students) {
             if (student.getFirstName().equalsIgnoreCase(name) || student.getLastName().equalsIgnoreCase(name)) {
@@ -92,10 +93,10 @@ public class ControllerStudents {
       the method searchByID is used to search a srudents by ID and display for user informations about it
       it receive String id and List of Students as parameter 
      */
-    public Students searchByID(String id, List<Students> students) {
+    public Students searchID(String id, List<Students> students) {
         //loop read file and try to find id that the user request
         for (Students student : students) {
-            if (student.getId()==student.getId()) {
+            if (student.getId() == student.getId()) {
                 System.out.println(" ");
                 return student;
             }

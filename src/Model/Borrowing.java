@@ -4,8 +4,6 @@
  */
 package Model;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author felipe e Caio Konart
@@ -30,8 +28,6 @@ public class Borrowing {
         this.available = true;
     }
 
-    //public Borrowing() {
-    //}
 
     public Books getBook() {
         return book;

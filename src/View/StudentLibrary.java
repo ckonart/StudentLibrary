@@ -12,6 +12,10 @@ import java.util.Scanner;
 import Model.Books;
 import Model.Students;
 import inpututils.InputUtils;
+import search.SearchByAuthor;
+import search.SearchById;
+import search.SearchByStudent;
+import search.SearchByTitle;
 
 
 /**
@@ -29,10 +33,13 @@ public class StudentLibrary {
         ControllerBooks myC = new ControllerBooks();
         ControllerStudents myEst = new ControllerStudents();
         ControllerBorrowing myEmp = new ControllerBorrowing();
-
+        SearchByTitle sbt = new SearchByTitle();
+        SearchByAuthor sba = new SearchByAuthor();
+        SearchByStudent sbs = new SearchByStudent();
+        SearchById sbi = new SearchById();
         try {
-            List<Books> books = myC.readLivros("src\\MOCK_DATA.csv");
-            List<Students> std = myEst.readStudents("src\\STUDENTS.csv");
+            List<Books> books = myC.readLivros("src/MOCK_DATA.csv");
+            List<Students> std = myEst.readStudents("src/STUDENTS.csv");
             //List<Borrowings> brw = myEmp
             InputUtils myInput = new InputUtils();
 
@@ -50,9 +57,8 @@ public class StudentLibrary {
                 System.out.println("7. Register a student borrow");
                 System.out.println("8. See information about books borrowed");
                 System.out.println("9. Return a book");
-                System.out.println("10. Add a student to the queue");
-                System.out.println("11. Check next student in queue for a book");
-                System.out.println("12. Quit \n");
+                System.out.println("10. Check next student in queue for a book");
+                System.out.println("11. Quit \n");
                 choice = myInput.getUserInt("Please,Choose an option !");
 
                 switch (choice) {
@@ -61,34 +67,11 @@ public class StudentLibrary {
                         myC.listAll(books);
                         break;
                     case 2:
-                        System.out.print("Enter the title of the book: ");
-                        scanner.nextLine();
-                        String title = scanner.nextLine();
-                        Books book = myC.searchByTitle(title, books);
-
-                        if (book != null) {
-                            System.out.println("Book found: ");
-                            System.out.println(book.getTitle() + " \t\t| " + book.getfName() + " \t\t| " + book.getlName() + " \t\t| " + book.getGenre());
-                            System.out.println("\n");
-                        } else {
-                            System.out.println("Book not found");
-                        }
-
+                        sbt.SearchByTitle();
                         break;
 
                     case 3:
-                        System.out.print("Enter the Author's first name: ");
-                        scanner.nextLine();
-                        String myKB = scanner.nextLine();
-                        Books Authorfname = myC.searchByAuthor(myKB, books);
-
-                        if (Authorfname != null) {
-                            System.out.println("Book found: ");
-                            System.out.println(Authorfname.getTitle() + " \t\t| " + Authorfname.getfName() + " \t\t| " + Authorfname.getlName() + " \t\t| " + Authorfname.getGenre());
-                            System.out.println("\n");
-                        } else {
-                            System.out.println("Author not found");
-                        }
+                        sba.SearchByAuthor();
                         break;
 
                     case 4:
@@ -97,66 +80,37 @@ public class StudentLibrary {
                         break;
 
                     case 5:
-                       boolean validName = false;
-do {
-    System.out.print("Enter the name of the student: ");
-    String studentName = scanner.nextLine().trim();
-    if (studentName.isEmpty()) {
-        System.out.println("Error: name cannot be empty");
-    } else {
-        Students student = myEst.searchByName(studentName, std);
-        if (student != null) {
-            System.out.println("Student found: ");
-            System.out.println(student.getFirstName() + " \t|\t" + student.getLastName() + " \t|\t" + student.getAddress() + " \t|\t" + student.getId());
-            System.out.println("\n");
-        } else {
-            System.out.println("Student not found");
-        }
-    }
-} while (validName != true);
-break;
-                        
-            
+                        sbs.SearchByName();
+                        break;
+
                     case 6:
-                        System.out.print("Enter a student ID: ");
-                        scanner.nextLine();
-                        String studentID = scanner.nextLine();
-                        Students student1 = myEst.searchByID(studentID, std);
-                        if (student1 != null) {
-                            System.out.println("Student found: ");
-                            System.out.println(student1.getFirstName() + " \t|\t" + student1.getLastName() + " \t|\t" + student1.getAddress() + " \t|\t" + student1.getId());
-                            System.out.println("\n");
-                        } else {
-                            System.out.println("Student not found");
-                        }
+                        sbi.SearchByid();
                         break;
 
                     case 7:
                         myEmp.borrowBook();
-                        System.out.println("Book borrowed with success! \n");
                         break;
 
                     case 8:
                         System.out.println(ControllerBorrowing.listBorrowings);
                         System.out.println("\n "
                                 + "");
-                        
+
                         break;
 
                     case 9:
                         myEmp.returnBook();
                         System.out.println(ControllerBorrowing.listBorrowings);
                         break;
+
                     case 10:
+                        myEmp.printWaitList();
                         break;
+
                     case 11:
-                      //myEmp.printWaitList();
-                    break;
-                      
-                    case 12:
                 }
 
-            } while (choice != 12);
+            } while (choice != 11);
 
         } catch (FileNotFoundException e) {
 

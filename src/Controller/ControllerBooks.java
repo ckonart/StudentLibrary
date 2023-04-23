@@ -75,12 +75,12 @@ public class ControllerBooks {
       the method searchByTitle is used to search a book by title and display for user informations about it
       it receive as parameter String title and List of books
      */
-    public Books searchByTitle(String title, List<Books> books) {
+    public Books searchTitle(String title, List<Books> books) {
 
         for (Books book : books) {
             //condition if user insert a title of book, they will return all the infomations about it
             if (book.getTitle().equalsIgnoreCase(title)) {
-                System.out.println(" ");
+                System.out.println("");
                 return book;
             }
         }
@@ -94,7 +94,7 @@ public class ControllerBooks {
       the method searchByAuthor is used to search a book by author firstname and display for user informations about it
       it receive String Author and List of books as parameter 
      */
-    public Books searchByAuthor(String Author, List<Books> books) {
+    public Books searchAuthor(String Author, List<Books> books) {
 
         for (Books book : books) {
             //condition if user insert an author firstname, they will return all the infomations about it
