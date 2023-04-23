@@ -4,7 +4,6 @@
  */
 package search;
 
-import Model.Books;
 import Model.Students;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -45,7 +44,7 @@ public class SearchById {
        List<Students> records = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/STUDENTS.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("src\\STUDENTS.csv"));
             String contentLine = br.readLine(); // ler a primeira linha que contém os cabeçalhos das colunas
 
             String[] data;
@@ -77,7 +76,7 @@ public class SearchById {
     public Students linearSearch(List<Students> array, String id) {
         // Going one by one the elements in the array
         for (int i = 0; i < array.size(); i++) {
-            if (array.get(i).getId().equalsIgnoreCase(id)) {
+            if (array.get(i).getId().toLowerCase().contains(id.toLowerCase())) {
                 return array.get(i);
             }
         }

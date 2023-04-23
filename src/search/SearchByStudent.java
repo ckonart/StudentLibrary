@@ -22,31 +22,32 @@ public class SearchByStudent {
     
    public void SearchByName() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Enter a student name to search: ");
-            String name = reader.readLine();
-            List<Students> records = loadData();
-            Students student = linearSearch(records, name);
-            if (student != null) {
-                System.out.println("\nRecord found:");
-                System.out.println("ID: " + student.getId());
-                System.out.println("Name: " + student.getFirstName()  + " " + student.getLastName());
-                System.out.println("Address: " + student.getAddress() + "\n");
-                
-            } else {
-                System.out.println("Record not found");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter a student name to search: ");
+        String name = reader.readLine();
+        List<Students> records = loadData();
+        List<Students> students = linearSearch(records, name);
+        if (students != null) {
+            System.out.println("\nRecords found:");
+            for (Students matchedStudent : students) {
+                System.out.println("ID: " + matchedStudent.getId());
+                System.out.println("Name: " + matchedStudent.getFirstName()  + " " + matchedStudent.getLastName());
+                System.out.println("Address: " + matchedStudent.getAddress() + "\n");
             }
-        } catch (IOException ex) {
-            Logger.getLogger(SearchByTitle.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            System.out.println("Record not found");
         }
+    } catch (IOException ex) {
+        Logger.getLogger(SearchByTitle.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
     public List<Students> loadData() {
 
         List<Students> records = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/STUDENTS.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("src\\STUDENTS.csv"));
             String contentLine = br.readLine(); // ler a primeira linha que contém os cabeçalhos das colunas
 
             String[] data;
@@ -75,17 +76,22 @@ public class SearchByStudent {
         return records;
     }
 
-    public Students linearSearch(List<Students> array, String name) {
-        for (int i = 0; i < array.size(); i++) {
-            if (array.get(i).getFirstName().equalsIgnoreCase(name)) {
-                return array.get(i);
-            }
-            
-            if (array.get(i).getLastName().equalsIgnoreCase(name)) {
-                return array.get(i);
-            }
+    public List<Students> linearSearch(List<Students> array, String name) {
+    
+        List<Students> matches = new ArrayList<>();
+
+    for (int i = 0; i < array.size(); i++) {
+        Students student = array.get(i);
+        if (student.getFirstName().toLowerCase().contains(name.toLowerCase()) ||
+                student.getLastName().toLowerCase().contains(name.toLowerCase())) {
+            matches.add(student);
         }
-        return null; 
-        
+    }
+
+        if (matches.isEmpty()) {
+            return null;
+        } else {
+            return matches;
+}
 }
 }

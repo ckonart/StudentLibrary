@@ -38,8 +38,8 @@ public class StudentLibrary {
         SearchByStudent sbs = new SearchByStudent();
         SearchById sbi = new SearchById();
         try {
-            List<Books> books = myC.readLivros("src/MOCK_DATA.csv");
-            List<Students> std = myEst.readStudents("src/STUDENTS.csv");
+            List<Books> books = myC.readLivros("src\\MOCK_DATA.csv");
+            List<Students> std = myEst.readStudents("src\\STUDENTS.csv");
             InputUtils myInput = new InputUtils();
 
             Scanner scanner = new Scanner(System.in);

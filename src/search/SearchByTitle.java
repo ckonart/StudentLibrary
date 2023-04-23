@@ -46,7 +46,7 @@ public class SearchByTitle {
         List<Books> records = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/MOCK_DATA.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("src\\MOCK_DATA.csv"));
             String contentLine = br.readLine(); // ler a primeira linha que contém os cabeçalhos das colunas
 
             String[] data;
@@ -79,7 +79,7 @@ public class SearchByTitle {
     public Books linearSearch(List<Books> array, String Title) {
         // Going one by one the elements in the array
         for (int i = 0; i < array.size(); i++) {
-            if (array.get(i).getTitle().equalsIgnoreCase(Title)) {
+            if (array.get(i).getTitle().toLowerCase().contains(Title.toLowerCase())) {
                 return array.get(i);
             }
         }
