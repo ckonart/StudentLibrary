@@ -21,22 +21,24 @@ import java.util.logging.Logger;
 public class SearchById {
       public void SearchByid() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Enter a student ID to search: ");
-            String name = reader.readLine();
-            List<Students> records = loadData();
-            Students student = linearSearch(records, name);
-            if (student != null) {
-               System.out.println("\nRecord found:");
-                System.out.println( student.getId());
-                System.out.println("Name: " + student.getFirstName()  + " " + student.getLastName());
-                System.out.println("Address: " + student.getAddress() + "\n");
-            } else {
-                System.out.println("Record not found");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter the student ID to search: ");
+        String id = reader.readLine();
+        List<Students> records = loadData();
+        List<Students> students = linearSearch(records, id);
+        if (students != null) {
+            System.out.println("\nRecords found:");
+            for (Students matchedStudent : students) {
+                System.out.println("ID: " + matchedStudent.getId());
+                System.out.println("Name: " + matchedStudent.getFirstName()  + " " + matchedStudent.getLastName());
+                System.out.println("Address: " + matchedStudent.getAddress() + "\n");
             }
-        } catch (IOException ex) {
-            Logger.getLogger(SearchByTitle.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            System.out.println("Record not found");
         }
+    } catch (IOException ex) {
+        Logger.getLogger(SearchByTitle.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     public List<Students> loadData() {
@@ -73,14 +75,23 @@ public class SearchById {
         return records;
     }
 
-    public Students linearSearch(List<Students> array, String id) {
-        // Going one by one the elements in the array
+    public List<Students> linearSearch(List<Students> array, String id) {
+    
+        List<Students> matches = new ArrayList<>();
+
         for (int i = 0; i < array.size(); i++) {
-            if (array.get(i).getId().toLowerCase().contains(id.toLowerCase())) {
-                return array.get(i);
+            Students student = array.get(i);
+            if (student.getId().toLowerCase().contains(id.toLowerCase())
+                    || student.getId().toLowerCase().contains(id.toLowerCase())) {
+                matches.add(student);
             }
         }
-        return null; 
+
+        if (matches.isEmpty()) {
+            return null;
+        } else {
+            return matches;
+        }
     }
 
 }

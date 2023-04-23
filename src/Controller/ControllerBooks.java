@@ -25,7 +25,7 @@ public class ControllerBooks {
       it receives as a parameter a String filePath that mains path of the file to be read a 
       and throws a FileNotFoundException is a type exception if the file is not found.
      */
-    public List<Books> readLivros(String filePath) throws FileNotFoundException {  
+    public List<Books> readBooks(String filePath) throws FileNotFoundException {  
         // read a new file
         try ( Scanner myKB = new Scanner(new File(filePath))){
             
