@@ -40,7 +40,6 @@ public class StudentLibrary {
         try {
             List<Books> books = myC.readLivros("src/MOCK_DATA.csv");
             List<Students> std = myEst.readStudents("src/STUDENTS.csv");
-            //List<Borrowings> brw = myEmp
             InputUtils myInput = new InputUtils();
 
             Scanner scanner = new Scanner(System.in);
