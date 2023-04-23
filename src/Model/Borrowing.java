@@ -83,7 +83,7 @@ public class Borrowing {
 
     @Override
     public String toString() {
-        return "- " + book + "- " + student + "- StartDate = " + startDate + ", dueDate = " + dueDate + ", endDate = " + endDate + ", available=" + available;
+        return "- " + book + "- " + student + "- StartDate = " + startDate + ", dueDate = " + dueDate + ", endDate = " + endDate + ", available=" + available + "\n----------------------------- \n";
     }
     
     

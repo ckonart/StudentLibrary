@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import Model.Books;
 import Model.Students;
+import inpututils.InputUtils;
 
 
 /**
@@ -33,6 +34,7 @@ public class StudentLibrary {
             List<Books> books = myC.readLivros("src\\MOCK_DATA.csv");
             List<Students> std = myEst.readStudents("src\\STUDENTS.csv");
             //List<Borrowings> brw = myEmp
+            InputUtils myInput = new InputUtils();
 
             Scanner scanner = new Scanner(System.in);
             int choice;
@@ -51,8 +53,7 @@ public class StudentLibrary {
                 System.out.println("10. Add a student to the queue");
                 System.out.println("11. Check next student in queue for a book");
                 System.out.println("12. Quit \n");
-                System.out.println("Please select an option: ");
-                choice = scanner.nextInt();
+                choice = myInput.getUserInt("Please,Choose an option !");
 
                 switch (choice) {
                     case 1:
@@ -96,19 +97,26 @@ public class StudentLibrary {
                         break;
 
                     case 5:
-                        System.out.print("Enter the name of the student: ");
-                        scanner.nextLine();
-                        String studentName = scanner.nextLine();
-                        Students student = myEst.searchByName(studentName, std);
-                        if (student != null) {
-                            System.out.println("Student found: ");
-                            System.out.println(student.getFirstName() + " \t|\t" + student.getLastName() + " \t|\t" + student.getAddress() + " \t|\t" + student.getId());
-                            System.out.println("\n");
-                        } else {
-                            System.out.println("Student not found");
-                        }
-                        break;
-
+                       boolean validName = false;
+do {
+    System.out.print("Enter the name of the student: ");
+    String studentName = scanner.nextLine().trim();
+    if (studentName.isEmpty()) {
+        System.out.println("Error: name cannot be empty");
+    } else {
+        Students student = myEst.searchByName(studentName, std);
+        if (student != null) {
+            System.out.println("Student found: ");
+            System.out.println(student.getFirstName() + " \t|\t" + student.getLastName() + " \t|\t" + student.getAddress() + " \t|\t" + student.getId());
+            System.out.println("\n");
+        } else {
+            System.out.println("Student not found");
+        }
+    }
+} while (validName != true);
+break;
+                        
+            
                     case 6:
                         System.out.print("Enter a student ID: ");
                         scanner.nextLine();
@@ -125,11 +133,13 @@ public class StudentLibrary {
 
                     case 7:
                         myEmp.borrowBook();
-                        System.out.println("Book borrowed with success!");
+                        System.out.println("Book borrowed with success! \n");
                         break;
 
                     case 8:
                         System.out.println(ControllerBorrowing.listBorrowings);
+                        System.out.println("\n "
+                                + "");
                         
                         break;
 
